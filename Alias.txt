@@ -24,5 +24,6 @@ startd(){
       then
          terraform destroy
       fi
+   rm $plan
    fi
 }

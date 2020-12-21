@@ -8,6 +8,8 @@ startd(){
    ls
    read -p "Please enter a project name: " project
    cd $project
+   echo "Running environmental Variable Script"
+   source setup_tf_vars.sh
    echo "Initializing Terraform"
    terraform init
    read -p "Enter Plan name: " plan

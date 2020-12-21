@@ -1,0 +1,28 @@
+#---Place in either ~/.bashrc, ~/.profile or ~/.bash_profile
+
+#---Terraform Demo--#
+
+startd(){
+   cd /mnt/Data_2TB/projects/DevOps_Project/Terraform_ex
+   echo "You've been directed to your Terraform project folder"
+   ls
+   read -p "Please enter a project name: " project
+   cd $project
+   echo "Initializing Terraform"
+   terraform init
+   read -p "Enter Plan name: " plan
+   echo "Displaying Plan"
+   terraform plan -out $plan
+   read -p "Are you sure you wish to use this Terraform Plan? " -n 1 -r
+   echo
+   if [[ $REPLY =~ ^[Yy]$ ]]
+   then
+      terraform apply $plan
+      read -p "Project has been deployed for demo purposes. Do you wish to destroy it?" -n 1 -r
+      echo
+      if [[ $REPLY =~ ^[Yy]$ ]]
+      then
+         terraform destroy
+      fi
+   fi
+}
